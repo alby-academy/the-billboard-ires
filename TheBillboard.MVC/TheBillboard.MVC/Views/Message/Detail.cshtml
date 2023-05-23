@@ -1,0 +1,31 @@
+@model Message
+
+@{
+    ViewData["Title"] = "Message Detail";
+    Layout = "_Layout";
+}
+
+<h1 class="display-5">@ViewData["Title"]</h1>
+
+<form>
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" asp-for="Title" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="body" class="form-label">Body</label>
+        <textarea class="form-control" id="body" asp-for="Body" readonly></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="postDate" class="form-label">Post Date</label>
+        <input type="date" class="form-control" id="postDate" asp-for="PostDate" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="authorFirstName" class="form-label">Author First Name</label>
+        <input type="text" class="form-control" id="authorFirstName" asp-for="Author.GivenName" readonly>
+    </div>
+    <div class="mb-3">
+        <label for="authorLastName" class="form-label">Author Last Name</label>
+        <input type="text" class="form-control" id="authorLastName" asp-for="Author.FamilyName" readonly>
+    </div>
+</form>

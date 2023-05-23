@@ -1,0 +1,28 @@
+@model IEnumerable<Message>
+
+@{
+    ViewData["Title"] = "Messages";
+    Layout = "_Layout";
+}
+
+<h1 class="display-5">@ViewData["Title"]</h1>
+
+<div class="d-flex flex-row">
+    <div class="d-flex flex-column w-100">
+        <h3>Form</h3>
+        <h3>Messages</h3>
+        <div class="d-flex flex-column align-items-center">
+            @foreach (var message in Model)
+            {
+                <div class="card w-50">
+                    <div class="card-body">
+                        <h5 class="card-title">@message.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@message.Author.FullName</h6>
+                        <p class="card-text">@message.Body</p>
+                        <a class="card-link" asp-action="Detail" asp-route-id="@message.Id">Detail</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
