@@ -7,26 +7,27 @@
 
 <h1 class="display-5">@ViewData["Title"]</h1>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Update", "Message", FormMethod.Post))
 {
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.Author.Id)
+
     <div class="mb-3">
         @Html.LabelFor(model => model.Title, new { @class = "form-label" })
-        @Html.TextBoxFor(model => model.Title, new { @class = "form-control", @readonly = "readonly" })
+        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
     </div>
     <div class="mb-3">
         @Html.LabelFor(model => model.Body, new { @class = "form-label" })
-        @Html.TextAreaFor(model => model.Body, new { @class = "form-control", @readonly = "readonly" })
+        @Html.TextAreaFor(model => model.Body, new { @class = "form-control" })
     </div>
     <div class="mb-3">
         @Html.LabelFor(model => model.PostDate, new { @class = "form-label" })
         @Html.TextBoxFor(model => model.PostDate, new { @class = "form-control", @readonly = "readonly" })
     </div>
     <div class="mb-3">
-        @Html.LabelFor(model => model.Author.GivenName, "Author First Name", new { @class = "form-label" })
-        @Html.TextBoxFor(model => model.Author.GivenName, new { @class = "form-control", @readonly = "readonly" })
+        @Html.LabelFor(model => model.Author.FullName, "Author First Name", new { @class = "form-label" })
+        @Html.TextBoxFor(model => model.Author.FullName, new { @class = "form-control", @readonly = "readonly" })
     </div>
-    <div class="mb-3">
-        @Html.LabelFor(model => model.Author.FamilyName, "Author Last Name", new { @class = "form-label" })
-        @Html.TextBoxFor(model => model.Author.FamilyName, new { @class = "form-control", @readonly = "readonly" })
-    </div>
+
+    <button type="submit" class="btn btn-outline-primary">Submit</button>
 }

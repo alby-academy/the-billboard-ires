@@ -10,7 +10,7 @@
 <div class="d-flex flex-row">
     <div class="d-flex flex-column w-100">
         <h3>Form</h3>
-        @using (Html.BeginForm("Submit", "Message", FormMethod.Post))
+        @using (Html.BeginForm("Create", "Message", FormMethod.Post))
         {
             <div class="mb-3">
                 @Html.LabelFor(model => model.Title, new { @class = "form-label" })
@@ -30,7 +30,7 @@
                     )
             </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
         }
 
         <h3>Messages</h3>
@@ -42,7 +42,8 @@
                         <h5 class="card-title">@message.Title</h5>
                         <h6 class="card-subtitle mb-2 text-muted">@message.Author?.FullName</h6>
                         <p class="card-text">@message.Body</p>
-                        <a class="card-link" asp-action="Detail" asp-route-id="@message.Id">Detail</a>
+                        <a class="btn btn-outline-info" asp-action="Detail" asp-route-id="@message.Id">Detail</a>
+                        <a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@message.Id">Delete</a>
                     </div>
                 </div>
             }

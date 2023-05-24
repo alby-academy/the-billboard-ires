@@ -30,9 +30,22 @@ public class MessageController : Controller
         return View(_messageGateway.GetById(id));
     }
 
-    public IActionResult Submit(MessageIndexViewModel vm)
+    public IActionResult Create(MessageIndexViewModel vm)
     {
         _messageGateway.Insert(new(Title: vm.Title, Body: vm.Body, Author: _authorGateway.GetById(vm.SelectedAuthor)));
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Update(Message message)
+    {
+        message = message with { Author = _authorGateway.GetById(message.Author?.Id ?? 0) };
+        _messageGateway.Modify(message);
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Delete(int id)
+    {
+        _messageGateway.Delete(id);
         return RedirectToAction("Index");
     }
 

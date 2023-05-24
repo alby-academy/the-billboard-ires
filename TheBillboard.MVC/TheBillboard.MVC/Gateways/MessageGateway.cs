@@ -18,4 +18,12 @@ public class MessageGateway : IGateway<Message>
 
     public Message? GetById(int id) => _messages.SingleOrDefault(message => message.Id == id);
     public void Insert(Message entity) => _messages.Add(entity with { Id = _messages.Max(m => m.Id) + 1, PostDate = DateTime.Now });
+
+    public void Modify(Message entity)
+    {
+        _messages.Remove(GetById(entity.Id ?? 0)!);
+        _messages.Add(entity);
+    }
+
+    public void Delete(int id) => _messages.Remove(GetById(id)!);
 }
