@@ -2,8 +2,9 @@ namespace TheBillboard.MVC.Abstract;
 
 using Models;
 
-public interface IGateway<out TEntity> where TEntity : Entity
+public interface IGateway<TEntity> where TEntity : Entity
 {
     IEnumerable<TEntity> GetAll();
     TEntity? GetById(int id);
+    void Insert(TEntity entity);
 }
