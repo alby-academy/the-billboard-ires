@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using TheBillboard.MVC;
 using TheBillboard.MVC.Abstract;
+using TheBillboard.MVC.Data;
 using TheBillboard.MVC.Gateways;
 using TheBillboard.MVC.Models;
 
@@ -6,10 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddSingleton<IGateway<Message>, MessageGateway>();
-builder.Services.AddSingleton<IGateway<Author>, AuthorGateway>();
+builder.Services.AddScoped<IGateway<Message>, MessageGateway>();
+builder.Services.AddScoped<IGateway<Author>, AuthorGateway>();
+
+builder.Services.AddDbContext<TheBillboardContext>(options => 
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 
 var app = builder.Build();
+
+await app.MigrateAsync();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -30,4 +39,4 @@ app.MapControllerRoute(
     "default",
     "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
+await app.RunAsync();

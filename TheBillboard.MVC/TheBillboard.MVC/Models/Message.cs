@@ -1,3 +1,7 @@
 namespace TheBillboard.MVC.Models;
 
-public record Message(int? Id = default, string Title = "", string Body = "", DateTime? PostDate = default, Author? Author = default) : Entity(Id);
+public record Message(int? Id = default, string Title = "", string Body = "", DateTime? PostDate = default) : Entity(Id)
+{
+    public int AuthorId { get; set; }
+    public Author? Author { get; set; }
+}

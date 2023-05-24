@@ -32,7 +32,12 @@ public class MessageController : Controller
 
     public IActionResult Create(MessageIndexViewModel vm)
     {
-        _messageGateway.Insert(new(Title: vm.Title, Body: vm.Body, Author: _authorGateway.GetById(vm.SelectedAuthor)));
+        var message = new Message(Title: vm.Title, Body: vm.Body)
+        {
+            Author = _authorGateway.GetById(vm.SelectedAuthor)
+        };
+
+        _messageGateway.Insert(message);
         return RedirectToAction("Index");
     }
 
