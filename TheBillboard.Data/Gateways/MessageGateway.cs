@@ -22,11 +22,11 @@ public class MessageGateway : IGateway<Message>
     
     public Message Insert(Message entity)
     {
-        entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(p => p.Id == entity.AuthorId);
         var e = _context.Messages.Add(entity);
 
         _context.SaveChanges();
-
+        
+        e.Entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(p => p.Id == entity.AuthorId);
         return e.Entity;
     }
 
