@@ -1,8 +1,11 @@
 namespace TheBillboard.Data.Gateways;
 
 using Abstract;
+
 using Microsoft.EntityFrameworkCore;
+
 using Models;
+
 using TheBillboard.Data.Data;
 
 public class MessageGateway : IGateway<Message>
@@ -16,13 +19,31 @@ public class MessageGateway : IGateway<Message>
     public Message? GetById(int id) => _context.Messages.Find(id);
     public Message Insert(Message entity)
     {
+        entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(p => p.Id == entity.AuthorId);
         var e = _context.Messages.Add(entity);
+
         _context.SaveChanges();
 
         return e.Entity;
     }
 
-    public void Modify(Message entity) => throw new NotImplementedException();
+    public Message Modify(Message entity)
+    {
 
-    public void Delete(int id) => throw new NotImplementedException();
+
+        _context.Messages.Update(entity);
+        _context.SaveChanges();
+        var author = _context.Authors.Find(entity.AuthorId);
+        entity.Author = author;
+        return entity;
+
+    }
+
+    public Message Delete(int id)
+    {
+        var message = _context.Messages.Find(id);
+        _context.Remove(message);
+        _context.SaveChanges();
+        return message;
+    }
 }
