@@ -32,7 +32,9 @@ public class MessageGateway : IGateway<Message>
 
     public Message Modify(Message entity)
     {
-        _context.Messages.Update(entity);
+        var current = _context.Messages.AsNoTracking().SingleOrDefault(m => m.Id == entity.Id);
+        
+        _context.Messages.Update(current! with { Title = entity.Title, Body = entity.Body});
         _context.SaveChanges();
         
         var author = _context.Authors.Find(entity.AuthorId);

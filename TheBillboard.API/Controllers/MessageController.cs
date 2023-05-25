@@ -4,6 +4,7 @@ namespace TheBillboard.API.Controllers;
 
 using Data.Abstract;
 using Data.Models;
+using Dtos;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -52,14 +53,24 @@ public class MessageController : ControllerBase
         }
     }
 
-    [HttpPut]
-    public IActionResult Edit([FromBody] Message message)
+    [HttpPut("{id:int}")]
+    public IActionResult Edit([FromRoute] int id, [FromBody] MessageDto dto)
     {
-        if (message.Id is null || _gateway.GetById(message.Id ?? 0) is null)
+        try
         {
-            return BadRequest("Id is not valid");
+            if (_gateway.GetById(id) is null)
+            {
+                return BadRequest("Id is not valid");
+            }
+
+            var message = new Message(id, dto.Title, dto.Body);
+            _gateway.Modify(message);
+
+            return Ok(id);
         }
-        _gateway.Modify(message);
-        return Ok();
+        catch
+        {
+            return Problem();
+        }
     }
 }
