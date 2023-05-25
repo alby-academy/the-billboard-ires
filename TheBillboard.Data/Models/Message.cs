@@ -1,4 +1,4 @@
-namespace TheBillboard.MVC.Models;
+namespace TheBillboard.Data.Models;
 
 public record Message(int? Id = default, string Title = "", string Body = "", DateTime? PostDate = default) : Entity(Id)
 {

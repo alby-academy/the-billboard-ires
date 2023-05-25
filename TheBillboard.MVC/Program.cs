@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using TheBillboard.Data.Data;
+using TheBillboard.Data.Models;
 using TheBillboard.MVC;
 using TheBillboard.MVC.Abstract;
-using TheBillboard.MVC.Data;
 using TheBillboard.MVC.Gateways;
-using TheBillboard.MVC.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

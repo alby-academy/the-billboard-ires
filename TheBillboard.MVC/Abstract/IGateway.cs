@@ -1,6 +1,6 @@
 namespace TheBillboard.MVC.Abstract;
 
-using Models;
+using Data.Models;
 
 public interface IGateway<TEntity> where TEntity : Entity
 {

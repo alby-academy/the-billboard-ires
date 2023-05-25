@@ -1,8 +1,8 @@
 ﻿namespace TheBillboard.MVC.Controllers;
 
 using System.Diagnostics;
+using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using Models;
 
 public class HomeController : Controller
 {

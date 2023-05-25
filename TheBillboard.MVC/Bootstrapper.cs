@@ -1,6 +1,6 @@
 namespace TheBillboard.MVC;
 
-using Data;
+using Data.Data;
 using Microsoft.EntityFrameworkCore;
 
 public static class Bootstrapper

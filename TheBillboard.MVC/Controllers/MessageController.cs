@@ -1,8 +1,8 @@
 namespace TheBillboard.MVC.Controllers;
 
 using Abstract;
+using Data.Models;
 using Microsoft.AspNetCore.Mvc;
-using Models;
 using ViewModel;
 
 public class MessageController : Controller

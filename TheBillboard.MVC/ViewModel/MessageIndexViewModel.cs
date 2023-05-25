@@ -1,6 +1,6 @@
 namespace TheBillboard.MVC.ViewModel;
 
-using Models;
+using Data.Models;
 
 public class MessageIndexViewModel
 {

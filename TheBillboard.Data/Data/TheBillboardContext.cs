@@ -1,4 +1,4 @@
-namespace TheBillboard.MVC.Data;
+namespace TheBillboard.Data.Data;
 
 using Microsoft.EntityFrameworkCore;
 using Models;

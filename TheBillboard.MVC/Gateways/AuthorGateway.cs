@@ -1,7 +1,7 @@
 namespace TheBillboard.MVC.Gateways;
 
 using Abstract;
-using Models;
+using Data.Models;
 
 public class AuthorGateway : IGateway<Author>
 {

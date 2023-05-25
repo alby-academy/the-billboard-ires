@@ -1,9 +1,9 @@
 namespace TheBillboard.MVC.Gateways;
 
 using Abstract;
-using Data;
+using Data.Data;
+using Data.Models;
 using Microsoft.EntityFrameworkCore;
-using Models;
 
 public class MessageGateway : IGateway<Message>
 {
