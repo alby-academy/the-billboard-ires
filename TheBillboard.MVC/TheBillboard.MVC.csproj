@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\TheBillboard.API\TheBillboard.API.csproj" />
       <ProjectReference Include="..\TheBillboard.Data\TheBillboard.Data.csproj" />
     </ItemGroup>
 

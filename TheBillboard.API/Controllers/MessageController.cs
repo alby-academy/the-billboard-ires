@@ -21,6 +21,13 @@ public class MessageController : ControllerBase
     [HttpGet]
     public IEnumerable<Message> Get() => _gateway.GetAll();
 
+
     [HttpPost]
     public Message Post([FromBody] Message message) => _gateway.Insert(message);
+
+    [HttpDelete]
+    public Message Delete([FromBody] int Id) => _gateway.Delete(Id);
+
+    [HttpPut]
+    public Message Edit([FromBody] Message message) => _gateway.Modify(message);
 }
