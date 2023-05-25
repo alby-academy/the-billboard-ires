@@ -16,7 +16,7 @@ public class MessageGateway : IGateway<Message>
 
     public IEnumerable<Message> GetAll() => _context.Messages
         .Include(m => m.Author);
-    public Message? GetById(int id) => _context.Messages.Find(id);
+    public Message? GetById(int id) => _context.Messages.AsNoTracking().SingleOrDefault(p => p.Id == id);
     public Message Insert(Message entity)
     {
         entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(p => p.Id == entity.AuthorId);
@@ -30,18 +30,18 @@ public class MessageGateway : IGateway<Message>
     public Message Modify(Message entity)
     {
 
+        var author = _context.Authors.AsNoTracking().SingleOrDefault(p => p.Id == entity.AuthorId);
+        entity.Author = author;
 
         _context.Messages.Update(entity);
         _context.SaveChanges();
-        var author = _context.Authors.Find(entity.AuthorId);
-        entity.Author = author;
         return entity;
 
     }
 
     public Message Delete(int id)
     {
-        var message = _context.Messages.Find(id);
+        var message = _context.Messages.AsNoTracking().SingleOrDefault(p => p.Id == id);
         _context.Remove(message);
         _context.SaveChanges();
         return message;

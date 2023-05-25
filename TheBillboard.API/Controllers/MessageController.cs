@@ -44,10 +44,10 @@ public class MessageController : ControllerBase
     [HttpPut]
     public IActionResult Edit([FromBody] Message message)
     {
-        if (message.Id is null || _gateway.GetById(message.Id ?? 0) is null)
-        {
-            return BadRequest("Id is not valid");
-        }
+        //if (message.Id is null || _gateway.GetById(message.Id ?? 0) is null)
+        //{
+        //    return BadRequest("Id is not valid");
+        //}
         _gateway.Modify(message);
         return Ok();
 
