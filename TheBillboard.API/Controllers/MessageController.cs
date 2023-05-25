@@ -51,6 +51,8 @@ public class MessageController : ControllerBase
             _gateway.Delete(Id);
             return StatusCode(200);
         }
+
+
     }
 
     [HttpPut("{id:int}")]

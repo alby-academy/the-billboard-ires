@@ -46,7 +46,7 @@ public class MessageGateway : IGateway<Message>
 
     public Message Delete(int id)
     {
-        var message = _context.Messages.Find(id);
+        var message = _context.Messages.AsNoTracking().SingleOrDefault(p => p.Id == id);
         _context.Remove(message);
         _context.SaveChanges();
         return message;
