@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBillboard.Data", "TheBil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBillboard.API", "TheBillboard.API\TheBillboard.API.csproj", "{7C4992FC-63D1-4D92-A2B3-DCC3C7AEC76F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheBillboard.Blazor", "TheBillboard.Blazor\TheBillboard.Blazor.csproj", "{C6AEC74B-435F-4046-BF98-AAE54D29B407}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{7C4992FC-63D1-4D92-A2B3-DCC3C7AEC76F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C4992FC-63D1-4D92-A2B3-DCC3C7AEC76F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C4992FC-63D1-4D92-A2B3-DCC3C7AEC76F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6AEC74B-435F-4046-BF98-AAE54D29B407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6AEC74B-435F-4046-BF98-AAE54D29B407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6AEC74B-435F-4046-BF98-AAE54D29B407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6AEC74B-435F-4046-BF98-AAE54D29B407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

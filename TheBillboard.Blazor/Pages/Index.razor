@@ -1,0 +1,38 @@
+﻿@page "/"
+@using TheBillboard.Data.Abstract
+@using TheBillboard.Data.Models
+
+<PageTitle>@_title</PageTitle>
+<h1>@_title</h1>
+
+@foreach (var message in Messages)
+{
+     <div class="card w-50 mb-2">
+          <div class="card-body">
+               <h5 class="card-title">@message.Title</h5>
+               <h6 class="card-subtitle mb-2 text-muted">@message.Author?.FullName</h6>
+               <p class="card-text">@message.Body</p>
+               <button onclick="@(()=> Navigate(message.Id))" class="btn btn-outline-info">Detail</button>
+               <button onclick="" class="btn btn-outline-danger">Delete</button>
+          </div>
+     </div>
+}
+
+@code {
+     private string _title = "Messages List";
+
+     [Inject] public IGateway<Message> Gateway { get; set; }
+     [Inject] public NavigationManager NavigationManager { get; set; }
+
+     private IEnumerable<Message> Messages { get; set; }
+
+     protected override void OnInitialized()
+     {
+          Messages = Gateway.GetAll();
+     }
+
+     private void Navigate(int? id)
+     {
+          NavigationManager.NavigateTo($"counter/{id}");
+     }
+}
