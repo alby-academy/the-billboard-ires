@@ -19,8 +19,21 @@ public class MessageController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Message> Get() => _gateway.GetAll();
+    public IActionResult Get()
+    {
+        try
+        {
+            var messages = _gateway.GetAll();
+            return Ok(messages);
+        }
+        catch
+        {
+            return Problem();
+        }
+    }
 
+    [HttpGet("{id:int}")]
+    public Message GetById(int id) => _gateway.GetById(id)!;
 
     [HttpPost]
     public Message Post([FromBody] Message message) => _gateway.Insert(message);
@@ -37,8 +50,6 @@ public class MessageController : ControllerBase
             _gateway.Delete(Id);
             return StatusCode(200);
         }
-
-
     }
 
     [HttpPut]
@@ -50,6 +61,5 @@ public class MessageController : ControllerBase
         }
         _gateway.Modify(message);
         return Ok();
-
     }
 }
