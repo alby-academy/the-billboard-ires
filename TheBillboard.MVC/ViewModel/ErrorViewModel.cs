@@ -1,4 +1,4 @@
-namespace TheBillboard.Data.Models;
+namespace TheBillboard.MVC.ViewModel;
 
 public class ErrorViewModel
 {

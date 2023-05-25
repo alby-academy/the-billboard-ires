@@ -1,12 +1,12 @@
-namespace TheBillboard.MVC.Abstract;
+namespace TheBillboard.Data.Abstract;
 
-using Data.Models;
+using Models;
 
 public interface IGateway<TEntity> where TEntity : Entity
 {
     IEnumerable<TEntity> GetAll();
     TEntity? GetById(int id);
-    void Insert(TEntity entity);
+    TEntity Insert(TEntity entity);
     void Modify(TEntity entity);
     void Delete(int id);
 }

@@ -1,6 +1,6 @@
 namespace TheBillboard.MVC.Controllers;
 
-using Abstract;
+using Data.Abstract;
 using Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using ViewModel;

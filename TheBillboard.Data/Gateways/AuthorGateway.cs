@@ -1,7 +1,7 @@
-namespace TheBillboard.MVC.Gateways;
+namespace TheBillboard.Data.Gateways;
 
 using Abstract;
-using Data.Models;
+using Models;
 
 public class AuthorGateway : IGateway<Author>
 {
@@ -14,7 +14,7 @@ public class AuthorGateway : IGateway<Author>
     public IEnumerable<Author> GetAll() => _authors;
 
     public Author? GetById(int id) => _authors.SingleOrDefault(author => author.Id == id);
-    public void Insert(Author entity) => throw new NotImplementedException();
+    public Author Insert(Author entity) => throw new NotImplementedException();
     public void Modify(Author entity) => throw new NotImplementedException();
     public void Delete(int id) => throw new NotImplementedException();
 }
