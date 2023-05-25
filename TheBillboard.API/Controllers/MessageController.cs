@@ -26,8 +26,30 @@ public class MessageController : ControllerBase
     public Message Post([FromBody] Message message) => _gateway.Insert(message);
 
     [HttpDelete]
-    public Message Delete([FromBody] int Id) => _gateway.Delete(Id);
+    public IActionResult Delete([FromBody] int Id)
+    {
+        if (_gateway.GetById(Id) is null)
+        {
+            return BadRequest();
+        }
+        else
+        {
+            _gateway.Delete(Id);
+            return StatusCode(200);
+        }
+
+
+    }
 
     [HttpPut]
-    public Message Edit([FromBody] Message message) => _gateway.Modify(message);
+    public IActionResult Edit([FromBody] Message message)
+    {
+        if (message.Id is null || _gateway.GetById(message.Id ?? 0) is null)
+        {
+            return BadRequest("Id is not valid");
+        }
+        _gateway.Modify(message);
+        return Ok();
+
+    }
 }

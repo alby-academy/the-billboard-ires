@@ -19,7 +19,7 @@ public class MessageGateway : IGateway<Message>
     public Message? GetById(int id) => _context.Messages.Find(id);
     public Message Insert(Message entity)
     {
-        entity.Author = _context.Authors.SingleOrDefault(p => p.Id == entity.AuthorId);
+        entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(p => p.Id == entity.AuthorId);
         var e = _context.Messages.Add(entity);
 
         _context.SaveChanges();
@@ -30,10 +30,11 @@ public class MessageGateway : IGateway<Message>
     public Message Modify(Message entity)
     {
 
-        entity.Author = _context.Authors.AsNoTracking().SingleOrDefault(p => p.Id == entity.AuthorId);
 
-        _context.Update(entity);
+        _context.Messages.Update(entity);
         _context.SaveChanges();
+        var author = _context.Authors.Find(entity.AuthorId);
+        entity.Author = author;
         return entity;
 
     }
