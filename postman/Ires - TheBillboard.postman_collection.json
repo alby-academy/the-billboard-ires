@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "e503b4c0-0071-4ed2-92f5-8554246754ee",
+		"name": "Ires - TheBillboard",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1325649",
+		"_collection_link": "https://cowboysteam.postman.co/workspace/Team-Workspace~b5310ef1-66d2-475c-80d2-c0f0b3c7a78d/collection/1325649-e503b4c0-0071-4ed2-92f5-8554246754ee?action=share&creator=1325649&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{origin}}/message/1",
+					"host": [
+						"{{origin}}"
+					],
+					"path": [
+						"message",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Validazione struttura JSON\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(jsonData).to.have.property('title').that.is.a('string');\r",
+							"    pm.expect(jsonData).to.have.property('body').that.is.a('string');\r",
+							"    pm.expect(jsonData).to.have.property('postDate').that.is.a('string'); // Se vuoi essere più specifico, dovresti implementare un controllo del formato della data\r",
+							"    pm.expect(jsonData).to.have.property('authorId').that.is.a('number');\r",
+							"    pm.expect(jsonData).to.have.property('author'); // Questo si aspetta solo che la proprietà esista\r",
+							"    pm.expect(jsonData).to.have.property('id').that.is.a('number');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Prova Create\",\r\n  \"body\": \"Create\",\r\n  \"postDate\": \"2023-05-25T07:59:14.840Z\",\r\n  \"authorId\": 1\r\n}"
+				},
+				"url": {
+					"raw": "{{origin}}/Message",
+					"host": [
+						"{{origin}}"
+					],
+					"path": [
+						"Message"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
